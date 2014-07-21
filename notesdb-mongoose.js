@@ -2,7 +2,10 @@ var util = require('util');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var dburl = 'mongodb://localhost/chap06';
+var dburl =
+process.env.MONGOLAB_URI ||
+process.env.MONGOHQ_URL ||
+ 'mongodb://localhost/chap06';
 exports.connect = function(callback) {
     mongoose.connect(dburl);
 }
