@@ -12,7 +12,10 @@ var url     = require('url');
 var express = require('express');
 
 var nmDbEngine = 'mongoose';
-var notesdb = require('./notesdb-'+nmDbEngine);
+var notesdb = 
+process.env.MONGOLAB.URI ||
+process.env.MONGOHQ.URI ||
+require('./notesdb-'+nmDbEngine);
 
 var app = express();
 app.use(logger('dev'));
