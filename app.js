@@ -13,8 +13,8 @@ var express = require('express');
 
 var nmDbEngine = 'mongoose';
 var notesdb = 
-process.env.MONGOLAB.URI ||
-process.env.MONGOHQ.URI ||
+process.env.MONGOLAB_URI ||
+process.env.MONGOHQ_URL ||
 require('./notesdb-'+nmDbEngine);
 
 var app = express();
