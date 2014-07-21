@@ -1,0 +1,27 @@
+{
+  "name": "notes",
+  "version": "0.0.0",
+  "description": "herron node book chapter 6 demo",
+  "main": "app.js",
+  "private": true,
+  "dependencies": {
+    "body-parser": "x.x",
+    "cookie-parser": "^1.3.2",
+    "ejs": "^1.0.0",
+    "express": "^4.6.1",
+    "jade": "^1.4.2",
+    "morgan": "x.x",
+    "redis": "*",
+    "serve-favicon": "^2.0.1",
+    "static-favicon": "^2.0.0-alpha",
+    "stylus": "^0.47.2",
+    "url": "^0.10.1",
+    "util": "^0.10.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "charles ross",
+  "license": "artistic"
+}
