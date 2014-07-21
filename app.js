@@ -7,7 +7,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 
-var util    = require('util');
+//var util    = require('util');
 var url     = require('url');
 var express = require('express');
 
@@ -100,6 +100,7 @@ notesdb.connect(function(error) {
 app.on('close', function(errno) {
     notesdb.disconnect(function(err) { });
 });
+
 
 app.get('/', /*checkAccess,*/ function(req, res) { res.redirect('/view'); });
 app.get('/view', /*checkAccess,*/ function(req, res) {
