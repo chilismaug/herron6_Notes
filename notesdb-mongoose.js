@@ -7,7 +7,7 @@ process.env.MONGOLAB_URI ||
 process.env.MONGOHQ_URL ||
  'mongodb://localhost/chap06';
 
-/*
+
 exports.connect = function(callback) {
     mongoose.connect(uristring);
 }
@@ -15,8 +15,8 @@ exports.connect = function(callback) {
 exports.disconnect = function(callback) {
     mongoose.disconnect(callback);
 }
-*/
 
+/*
 exports.connect = mongoose.connect(uristring, function(err, res){
     if (err){
         console.log('ERROR connecting to ' + uristring + '. ' + err);
@@ -24,7 +24,7 @@ exports.connect = mongoose.connect(uristring, function(err, res){
         console.log('Succeeded, connected to ' + uristring );
     }
 });
-
+*/
 
 
 exports.setup = function(callback) { callback(null); }
