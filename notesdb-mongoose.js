@@ -2,17 +2,30 @@ var util = require('util');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var dburl =
+var uristring =
 process.env.MONGOLAB_URI ||
 process.env.MONGOHQ_URL ||
  'mongodb://localhost/chap06';
+
+/*
 exports.connect = function(callback) {
-    mongoose.connect(dburl);
+    mongoose.connect(uristring);
 }
 
 exports.disconnect = function(callback) {
     mongoose.disconnect(callback);
 }
+*/
+
+exports.connect = mongoose.connect(uristring, function(err, res){
+    if (err){
+        console.log('ERROR connecting to ' + uristring + '. ' + err);
+    }else{
+        console.log('Succeeded, connected to ' + uristring );
+    }
+});
+
+
 
 exports.setup = function(callback) { callback(null); }
 
