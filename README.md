@@ -1,11 +1,11 @@
 herron6_Notes
 =============
 
-2011 node 0.4 book demo, from David Herron's book "Node Web Development" published by Packt. 
+2011 node 0.4 book demo, from David Herron's (https://github.com/robogeek) book "Node Web Development" published by Packt. 
 Since 2011, everything broke! It's been extensively refracktored/rehacktored to work in the 2014 version of node 0.8
 
-Express was a lot different back then.
-Then getting to heroku brought fun! There was a db abstraction layer he made up that had to be tenderized and mangled up
+Express was a lot different back then. Middleware has been all split out now.
+Then getting it to heroku brought fun! There was a db abstraction layer to be tenderized and mangled up
 for heroku 3rd party mongobility.
 
 Still a bit worse for the wear, as the home page lacks the "Add" link as of July 21, 2014
