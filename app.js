@@ -109,7 +109,8 @@ app.get('/view', /*checkAccess,*/ function(req, res) {
             util.log('ERROR ' + err);
             throw err;
         } else
-            res.render('viewnotes.html', {
+            //res.render('viewnotes.html', {
+			res.render('layout.html', {
                 title: "Notes ("+nmDbEngine+")", notes: notes
             });
     });
