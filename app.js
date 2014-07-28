@@ -10,6 +10,7 @@ var logger = require('morgan');
 //var util    = require('util');
 var url     = require('url');
 var express = require('express');
+var engine = require('ejs-locals');
 
 var nmDbEngine = 'mongoose';
 var notesdb = 
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // view engine setup ???
 app.engine('html', require('ejs').renderFile);
+app.engine('ejs', engine);
 app.set('views', __dirname + '/views-'+nmDbEngine);
 app.set('view engine', 'ejs'); 
 
