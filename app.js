@@ -103,12 +103,11 @@ app.on('close', function(errno) {
 
 
 app.get('/', /*checkAccess,*/ function(req, res) { 
-//res.redirect('/view'); });
-res.render('layout', {
-			
-                title: "Notes ("+nmDbEngine+")", notes: notes
-            });
-
+	res.render('layout', { 
+      	title: "Notes ("+nmDbEngine+")", 
+		notes: notes
+     });
+});
 
 
 
