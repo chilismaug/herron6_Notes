@@ -102,15 +102,24 @@ app.on('close', function(errno) {
 });
 
 
-app.get('/', /*checkAccess,*/ function(req, res) { res.redirect('/view'); });
+app.get('/', /*checkAccess,*/ function(req, res) { 
+//res.redirect('/view'); });
+res.render('layout', {
+			
+                title: "Notes ("+nmDbEngine+")", notes: notes
+            });
+
+
+
+
 app.get('/view', /*checkAccess,*/ function(req, res) {
     notesdb.allNotes(function(err, notes) {
         if (err) {
             util.log('ERROR ' + err);
             throw err;
         } else
-            //res.render('viewnotes.html', {
-			res.render('layout', {
+            res.render('viewnotes.html', {
+			
                 title: "Notes ("+nmDbEngine+")", notes: notes
             });
     });
