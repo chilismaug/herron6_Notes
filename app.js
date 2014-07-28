@@ -104,8 +104,7 @@ app.on('close', function(errno) {
 
 app.get('/', /*checkAccess,*/ function(req, res) { 
 	res.render('layout', { 
-      	title: "Notes ("+nmDbEngine+")", 
-		notes: notes
+      	title: "Notes ("+nmDbEngine+")" 
      });
 });
 
