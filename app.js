@@ -1,3 +1,16 @@
+
+//var checkAccess = function(req, res, next) {
+//    if (!req.cookies
+//     || !req.cookies.notesaccess
+//     || req.cookies.notesaccess !== "AOK") {
+//        res.redirect('/login');
+//    } else {
+//        next();
+//    }
+//}
+var nmDbEngine = 'mongoose';
+var notesdb = require('./notesdb-'+nmDbEngine);
+
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 //var routes = require('./routes/index');
@@ -7,14 +20,12 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 
-//var util    = require('util');
+var util    = require('util');
 var url     = require('url');
 var express = require('express');
 var engine = require('ejs-locals');
 
-var nmDbEngine = 'mongoose';
-var notesdb = 
-require('./notesdb-'+nmDbEngine);
+
 
 var app = express();
 app.use(logger('dev'));
@@ -23,78 +34,33 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({  extended: true}));
 
 app.use(favicon("public/images/favicon.ico"));
-app.use(stylus.middleware(path.join(__dirname, 'public')));
+//app.use(stylus.middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
-
-//app.use('/', routes);     //jade demo stuff
-//app.use('/users', users); //jade demo stuff
-
-// view engine setup ?
-//app.set('view engine', 'jade'); 
 
 
 // view engine setup ???
 app.engine('html', require('ejs').renderFile);
 app.engine('ejs', engine);
 app.set('views', __dirname + '/views-'+nmDbEngine);
-app.set('view engine', 'ejs'); 
+app.set('view engine', 'ejs');
+
+
 
 var parseUrlParams = function(req, res, next) {
     req.urlP = url.parse(req.url, true);
     next();
+}
+
+
 
 /// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
-
-/// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
-    });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-});
+//app.use(function(req, res, next) {
+//    var err = new Error('Not Found');
+//    err.status = 404;
+//    next(err);
+//});
 
 
-
-// herron db code from here down
-
-}
-
-//var checkAccess = function(req, res, next) {
-//    if (!req.cookies 
-//     || !req.cookies.notesaccess 
-//     || req.cookies.notesaccess !== "AOK") {
-//        res.redirect('/login');
-//    } else {
-//        next();
-//    }
-//}
-
-// app.error(function(err, req, res) {
-//    res.render('500.html', { 
-//        title: "Notes ("+nmDbEngine+") ERROR", error: err
-//    });
-// });
 
 notesdb.connect(function(error) {
     if (error) throw error;
@@ -105,13 +71,12 @@ app.on('close', function(errno) {
 
 
 app.get('/', /*checkAccess,*/ function(req, res) { 
-	res.render('layout', { 
-      	title: "Notes ("+nmDbEngine+")" 
-     });
-});
-
-
-
+	res.render('index' , {
+        title: "Notes ("+nmDbEngine+")"
+		
+	}); 
+}); 
+  
 app.get('/view', /*checkAccess,*/ function(req, res) {
     notesdb.allNotes(function(err, notes) {
         if (err) {
@@ -119,7 +84,6 @@ app.get('/view', /*checkAccess,*/ function(req, res) {
             throw err;
         } else
             res.render('viewnotes.html', {
-			
                 title: "Notes ("+nmDbEngine+")", notes: notes
             });
     });
@@ -132,7 +96,7 @@ app.get('/add', /*checkAccess,*/ function(req, res) {
     });
 });
 app.post('/add', /*checkAccess,*/ function(req, res) {
-    notesdb.add(req.body.author, req.body.note, 
+    notesdb.add(req.body.author, req.body.note,
         function(error) {
             if (error) throw error;
             res.redirect('/view');
@@ -141,7 +105,7 @@ app.post('/add', /*checkAccess,*/ function(req, res) {
 app.get('/del', /*checkAccess,*/ parseUrlParams, function(req, res) {
       //  var notAllowed = null;
       //  notAllowed.delete();
-    notesdb.delete(req.urlP.query.id, 
+    notesdb.delete(req.urlP.query.id,
         function(error) {
             if (error) throw error;
             res.redirect('/view');
@@ -175,9 +139,6 @@ app.post('/edit', /*checkAccess,*/ function(req, res) {
 //    res.cookie('notesaccess', 'AOK');
 //    res.redirect('/view');
 // });
-
-// app.use(express.errorHandler({ dumpExceptions: true }));
-// app.use(express.errorHandler({ showStack: true, dumpExceptions: true }));
 
 
 // end of db code
