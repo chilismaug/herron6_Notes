@@ -35,6 +35,10 @@ app.use(bodyParser.urlencoded({  extended: true}));
 app.use(favicon("public/images/favicon.ico"));
 //app.use(stylus.middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(function(err, req, res, next){
+  console.error(err.stack);
+  res.send(500, 'Something broke!');
+});
 
 
 // view engine setup ???
