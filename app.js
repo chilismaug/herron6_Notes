@@ -25,9 +25,8 @@ var url     = require('url');
 var express = require('express');
 var engine = require('ejs-locals');
 
-
-
 var app = express();
+
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -145,5 +144,10 @@ app.post('/edit', /*checkAccess,*/ function(req, res) {
 
 //module.exports = app;
 
+// load the http app server
+// this is the idiom used in the Express.js homepage http://expressjs.com/guide.html
+
 var port_number = app.listen(process.env.PORT || 3000);
-app.listen(port_number);
+var server = app.listen(port_number, function() {
+    console.log('Listening on port %d', server.address().port);
+});
