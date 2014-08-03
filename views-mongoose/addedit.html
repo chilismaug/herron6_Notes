@@ -1,15 +1,6 @@
-<head>
- <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  
-<title><%= title %></title>
-</head>
+<% include ./header.html -%>
+<hr>
+<p> <a href='/'>Main</a>|<a href='/view'>View</a> </p>
 <form method='POST' action='<%= postpath %>'>
 <h2> Add a Note! </h2>
 <% if (note) { %><input type='hidden' name='id' value='<%= note._id %>'><% } %>

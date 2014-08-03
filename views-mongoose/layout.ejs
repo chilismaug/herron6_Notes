@@ -1,32 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
- <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<% include ./header.html -%>
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<hr>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  
-<title><%= title %></title>
-</head>
-<body>
-<h1><%= title %></h1>
-
+<p><a href='/view'>View</a> | <a href='/add'>Add</a></p>
+<%- body %>
 <div>
 <p>This app was put together by David Herron in his Packt book "Node Web Development" on node and Express versions long (2 years!) 
 deprecated. When I tried it (2014, 3 entire years past pub date), not a thing worked! So I munged various Express and EJS peices together until it behaved better. Still needs work...</>
 
 <p> These links open a rather raw view of the mongo documents list or a crude Add Note form. </p>
 </div>
-<p><a href='/view'>View</a> | <a href='/add'>Add</a></p>
-<%- body %>
 <br />
 <br /><br />
 
 <p>...next I'll try similar demo from the <a href="http://www.packtpub.com/node-web-development-2e/book">second edition</a>; it may work as written if I can beat the 2 year JS shelf life curse.</p>
 
+<!% include ./viewnotes.html %>
 </body>
 
