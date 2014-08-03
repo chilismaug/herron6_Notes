@@ -1,6 +1,6 @@
 <% include ./header.html -%>
 <hr>
-<p> <a href='/'>Main</a>|<a href='/view'>View</a> </p>
+<p> <a href='/'>Main</a> | <a href='/view'>View</a> </p>
 <form method='POST' action='<%= postpath %>'>
 <h2> Add a Note! </h2>
 <% if (note) { %><input type='hidden' name='id' value='<%= note._id %>'><% } %>
